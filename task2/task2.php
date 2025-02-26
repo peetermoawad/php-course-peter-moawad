@@ -1,10 +1,14 @@
 <?php
 $show = false;
+$valid=false;
 if (isset($_POST['submit'])) {
     $show = true;
     $name = $_POST['name'];
     $email = $_POST['email'];
     $password = $_POST['password'];
+    if(empty($name)||empty($email)||empty($password)){
+         $valid=true;
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -39,12 +43,15 @@ if (isset($_POST['submit'])) {
             <h3 class="text-center my-4">print Data</h3>
             <div class="card">
                 <div class="card-body">
+                   <?php if($valid): echo("All fields are required")?>
+                    <?php else: echo("Registration successful")?>
                     <h6>Your Name : <?= $name  ?> </h6>
                     <hr>
                     <h6>Your Email : <?= $email  ?></h6>
                     <hr>
                     <h6>Your password : <?= $password  ?> </h6>
                     <hr>
+                        <?php endif; ?>
                 </div>
             </div>
         </div>
